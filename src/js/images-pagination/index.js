@@ -34,8 +34,9 @@ class imagesPagination {
     this.currentPage += 1;
     this.scrollMarker = refs.gallery.lastElementChild;
     
-    this.fetchImages();
-    this.scrollMarker.scrollIntoView({behavior: "smooth" });
+    this.fetchImages()
+      .then(() =>
+    this.scrollMarker.scrollIntoView({behavior: "smooth" }));
   }
 
   onFormSubmit(event) { 
