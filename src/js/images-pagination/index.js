@@ -1,11 +1,9 @@
 import imagesApi from '../api/apiService';
 import imagesListTmpl from '../../templates/imageCard.hbs';
+import onFetchError from '../pnotify';
+import getRefs from '../get-refs';
 
-const refs = { 
-  form: document.querySelector('#search-form'),
-  gallery: document.querySelector('.gallery'),
-  loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
-};
+const refs = getRefs();
 
 class imagesPagination { 
   constructor() {
@@ -27,7 +25,7 @@ class imagesPagination {
   fetchImages() { 
     return imagesApi(this.currentPage, this.queryStr)
     .then(this.renderImages)
-    .catch(err => console.log(err));
+    .catch(err => onFetchError(err));
   }
   
   loadMore() { 
