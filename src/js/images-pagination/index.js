@@ -2,6 +2,7 @@ import imagesApi from '../api/apiService';
 import imagesListTmpl from '../../templates/imageCard.hbs';
 import onFetchError from '../pnotify';
 import getRefs from '../get-refs';
+import * as basicLightbox from 'basiclightbox';
 
 const refs = getRefs();
 
@@ -15,10 +16,13 @@ class imagesPagination {
   }
   
   renderImages({ hits }) { 
-    if (hits.length === 0) throw 'Nothing was found. Please try another search';
+    if (hits.length === 0) {
+      refs.loadMoreBtn.classList.remove('is-visible');
+      throw 'Nothing was found. Please try another search';
+    }
     
     const imagesMarkUp = imagesListTmpl(hits);
-    refs.gallery.insertAdjacentHTML('beforeend', imagesMarkUp) ;
+    refs.gallery.insertAdjacentHTML('beforeend', imagesMarkUp);
     refs.loadMoreBtn.classList.add('is-visible');
   }
   
@@ -39,7 +43,7 @@ class imagesPagination {
 
   onFormSubmit(event) { 
     event.preventDefault();
-    this.currentPage = 1;
+    this.currentPage = 1; 
     refs.gallery.innerHTML = '';
 
     this.queryStr = refs.form.query.value.trim();

@@ -3,6 +3,7 @@ import { throttle } from "lodash";
 import getRefs from './js/get-refs';
 import imagesPagination from './js/images-pagination';
 import trackScroll from './js/scroll-up';
+import './js/modal-img';
 
 const refs = getRefs();
 const images = new imagesPagination();
