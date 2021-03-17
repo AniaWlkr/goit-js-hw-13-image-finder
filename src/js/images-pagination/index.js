@@ -55,7 +55,7 @@ class imagesPagination {
 
   scrollToNewElements() {
     const headerHeight = document.querySelector('.pixabay-link').clientHeight + document.querySelector('#search-form').clientHeight;
-    const totalScrollHeight = refs.gallery.clientHeight - headerHeight - 40;
+    const totalScrollHeight = refs.gallery.clientHeight - headerHeight;
  
     setTimeout(() => {
       window.scrollTo({
